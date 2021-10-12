@@ -15,17 +15,18 @@ const App = () => {
       done: true,
     },
   ]);
-  
 
   return (
     <C.Container>
       <C.Area>
         <C.Header>Lista de Tarefa</C.Header>
         {/* Area de adicionar nova tarefa */}
-        {/* Lista de tarefas */}
+
+        {list.map((item, index) => (
+          <div>{item.name}</div>
+        ))}
 
       </C.Area>
-
     </C.Container>
   );
 };
