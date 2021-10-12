@@ -16,7 +16,9 @@ export function ListItem({ item }: ListItemProps) {
         checked={isChecked}
         onChange={(evento) => setIsChecked(evento.target.checked)}
       />
-      <label>{item.name}</label>
+      <label>
+        {item.name} - {item.done.toString()}
+      </label>
     </C.Container>
   );
 }
