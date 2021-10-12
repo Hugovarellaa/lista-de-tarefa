@@ -1,5 +1,6 @@
 import { useState } from "react";
 import * as C from "./App.styles";
+import { AddArea } from "./components/AddArea";
 import { ListItem } from "./components/ListItem";
 import { Item } from "./types/item";
 
@@ -21,10 +22,11 @@ const App = () => {
     <C.Container>
       <C.Area>
         <C.Header>Lista de Tarefa</C.Header>
-        {/* Area de adicionar nova tarefa */}
+        
+        <AddArea />
 
         {list.map((item, index) => (
-          <ListItem key={index} item={item}/>
+          <ListItem key={index} item={item} />
         ))}
       </C.Area>
     </C.Container>
