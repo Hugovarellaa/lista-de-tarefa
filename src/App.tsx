@@ -18,12 +18,22 @@ const App = () => {
     },
   ]);
 
+  const handleAddTask = (taskNAme: string)=>{
+    let newList = [...list];
+    newList.push({
+      id: list.length + 1,
+      name: taskNAme,
+      done: false
+    })
+    setList(newList);
+  } 
+
   return (
     <C.Container>
       <C.Area>
         <C.Header>Lista de Tarefa</C.Header>
-        
-        <AddArea />
+
+        <AddArea onEnter={handleAddTask}/>
 
         {list.map((item, index) => (
           <ListItem key={index} item={item} />
