@@ -1,28 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
   StyleSheet,
   TextInput,
   Platform,
-  TouchableOpacity,
+  FlatList,
 } from "react-native";
+import { Button } from "../components/Button";
+import { SkillCard } from "../components/SkillCard";
 
 export function Home() {
+  const [newSkills, setNewSkills] = useState("");
+  const [myskills, setMyskills] = useState([]);
+  const [gretting, setGretting] = useState("");
+
+  function handleAddSkill() {
+    setMyskills((oldstate) => [...oldstate, newSkills]);
+  }
+
+  useEffect(() => {
+    const currentHour = new Date().getHours();
+
+    if (currentHour < 12) {
+      setGretting("Good morning");
+    } else if ((currentHour >= 12) & (currentHour <= 18)) {
+      setGretting("Good afternoon");
+    } else {
+      setGretting("Good night");
+    }
+  }, []);
+
   return (
     <>
       <View style={style.container}>
         <Text style={style.title}>Welcome, Hugo</Text>
+        <Text style={style.reading}>{gretting}</Text>
         <TextInput
           style={style.input}
           placeholder="New skill"
           placeholderTextColor="#555"
+          onChangeText={setNewSkills}
         />
-        <TouchableOpacity style={style.button} activeOpacity={0.7}>
-          <Text style={style.buttonText}>Add</Text>
-        </TouchableOpacity>
 
-        <Text style={[style.title, { marginTop: 20 }]}>My skills</Text>
+        <Button onPress={handleAddSkill} />
+
+        <Text style={[style.title, { marginVertical: 50 }]}>My Skills</Text>
+
+        <FlatList
+          data={myskills}
+          keyExtractor={(item) => item}
+          renderItem={({ item }) => <SkillCard skill={item} />}
+        />
       </View>
     </>
   );
@@ -48,16 +77,7 @@ const style = StyleSheet.create({
     marginTop: 30,
     borderRadius: 10,
   },
-  button: {
-    backgroundColor: "#a370f7",
-    padding: 15,
-    borderRadius: 10,
-    alignItems: "center",
-    marginTop: 20,
-  },
-  buttonText: {
+  reading: {
     color: "#fff",
-    fontSize: 17,
-    fontWeight: "bold",
   },
 });
