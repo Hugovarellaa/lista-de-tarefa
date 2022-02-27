@@ -15,14 +15,14 @@ export function Button({onPress}) {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: '#a370f7',
-    padding: 15,
+    padding: 10,
     borderRadius: 7,
     alignItems: 'center',
-    marginVertical: 20,
+    marginVertical: 10,
   },
   buttonText: {
     color: '#fff',
-    fontSize: 17,
+    fontSize: 14,
     fontWeight: 'bold',
   },
 });
