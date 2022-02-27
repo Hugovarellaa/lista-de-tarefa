@@ -1,12 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  Platform,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, StyleSheet, TextInput, Platform} from 'react-native';
 import {Button} from '../components/Button';
 import {SkillCard} from '../components/SkillCard';
 
@@ -29,12 +22,12 @@ export function Home() {
           onChangeText={setNewSkill}
         />
 
-        <Button />
+        <Button onPress={handleNewAddNewSkill} />
 
-        <Text style={[styles.buttonText, {marginVertical: 20}]}>My Skills</Text>
+        <Text style={[styles.title, {marginVertical: 20}]}>My Skills</Text>
 
         {mySkills.map(skill => (
-          <SkillCard key={skill} />
+          <SkillCard key={skill} skill={skill} />
         ))}
       </View>
     </>
